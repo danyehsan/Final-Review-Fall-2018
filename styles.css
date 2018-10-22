@@ -5,4 +5,11 @@
   .Credit {
     background-color: #E5FFE5;
   }
-  
+
+  body {
+    background-color: #c7796c;
+  }
+
+.balance {
+    position: center;
+}

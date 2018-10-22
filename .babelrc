@@ -1,0 +1,4 @@
+{
+    "presets": ["@babel/react", "@babel/env"],
+    "pluggins": ["@babel/plugin-proposal-class-properties"]
+}
