@@ -1,36 +1,33 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { removeEntry } from '../reducers/ledger'
-import { Button } from './Shared'
+import Transaction from './Transaction'
+import styled from 'styled-components'
 
-const Item = styled.li`
-  background-color: ${ props => props.type === 'Debit' ? props.theme.red : props.theme.green };
-  display: flex;
-  justify-content: space-between;
-`
-const DeleteButton = styled(Button)`
-  background-color: black;
-  color: white;
+const List = styled.ul`
+  list-style: none;
 `
 
-const Transaction = ({ 
-  type,
-  amt,
-  description,
-  index,
-  dispatch,
-}) => (
-  <Item type={type}>
-    ${amt}
-    { description && ` - ${description}` }
-    <DeleteButton
-      onClick={() => dispatch(removeEntry(index))}
-    >
-      Remove
-    </DeleteButton>
-  </Item>
+const calcTotal = (ledger) => {
+  return ledger.reduce( (total, entry) => {
+    const amt = parseFloat(entry.amt)
+    if (entry.entry_type === 'Debit')
+      return total - amt
+    return total + amt
+  }, 0)
+}
+
+const Transactions = ({ ledger }) => (
+  <Fragment>
+    <h1>Ledger</h1>
+    <h4>Balance ${ calcTotal(ledger) }</h4>
+    <List>
+      { ledger.map( (entry) => <Transaction key={entry.id} {...entry} /> ) }
+    </List>
+  </Fragment>
 )
 
-export default connect()(Transaction)
+const mapStateToProps = (state) => {
+  return { ledger: state.ledger }
+}
 
+export default connect(mapStateToProps)(Transactions)
