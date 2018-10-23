@@ -67,3 +67,4 @@ class WishListForm extends React.Component {
 }
 
 export default connect()(WishListForm)
+
