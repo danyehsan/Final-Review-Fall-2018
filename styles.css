@@ -7,9 +7,10 @@
   }
 
   body {
-    background-color: #c7796c;
+    background-color: #cca082;
   }
 
-.balance {
-    position: center;
-}
+  #container {
+    display: flex;
+    justify-content: space-around;
+  }

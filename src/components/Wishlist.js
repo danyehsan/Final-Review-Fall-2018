@@ -1,12 +1,14 @@
-import React from 'react'
-import WishList from './WishListForm'
+
+import React, { Fragment } from 'react'
+import WishListForm from './WishListForm'
 import Items from './Items'
 
 const WishList = () => (
-    <div>
-        <WishListForm />
-        <Items />
-    </div>
+  <Fragment>
+    <WishListForm />
+    <Items />
+  </Fragment>
 )
 
-export default () => <div></div>
+export default WishList
+
